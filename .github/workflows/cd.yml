@@ -16,12 +16,9 @@ jobs:
             pull-requests: read
         
         steps:
-            - name: BaixarCodigo
-              uses: actions/checkout@v4
-              
-            name: Gerar numero de versao
-            shell: powershell
-            run: |
+            - name: Gerar numero de versao
+              shell: powershell
+              run: |
                 git fetch --tags
 
                 $prefix = Get-Date -Format "yy.MM"
@@ -44,7 +41,7 @@ jobs:
                 echo "VERSION=$version" >> $env:GITHUB_ENV
                 echo "version=$version" >> $env:GITHUB_OUTPUT
 
-            name: Criar Tag
-            run: |
+            - name: Criar Tag
+              run: |
                 git tag ${{ env.VERSION }}
                 git push origin ${{ env.VERSION }}    
