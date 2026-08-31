@@ -11,6 +11,7 @@ type
     Panel1: TPanel;
   private
     { Private declarations }
+    procedure CadastroCliente;
   public
     function Soma(const ANum1: Integer; const ANum2: Integer): Integer;
     { Public declarations }
@@ -25,9 +26,14 @@ implementation
 
 { TForm1 }
 
+procedure TForm1.CadastroCliente;
+begin
+
+end;
+
 function TForm1.Soma(const ANum1, ANum2: Integer): Integer;
 begin
-  Result := ANum1 + ANum2;
+  Result := ANum1 + ANum2 + 3;
 end;
 
 end.
