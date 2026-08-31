@@ -16,6 +16,9 @@ jobs:
             pull-requests: read
         
         steps:
+            - name: BaixarCodigo
+              uses: actions/checkout@v4
+              
             name: Gerar numero de versao
             shell: powershell
             run: |
