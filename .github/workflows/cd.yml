@@ -1,0 +1,47 @@
+name: Entrega continua - cd
+
+on:
+    pull_request:
+        types: 
+            - closed
+        branches:
+            - master
+
+jobs:
+    entrega_continua:
+        if: github.event.pull_request.merged == true
+        runs-on: self-hosted
+        permissions:
+            contents: write
+            pull-requests: read
+        
+        steps:
+            name: Gerar numero de versao
+            shell: powershell
+            run: |
+                git fetch --tags
+
+                $prefix = Get-Date -Format "yy.MM"
+
+                $last = git tag --list "$prefix.*" |
+                        Sort-Object |
+                        Select-Object -Last 1
+
+                if ($last)
+                {
+                    $build = [int]($last.Split('.')[-1]) + 1
+                }
+                else
+                {
+                    $build = 1
+                }
+
+                $version = "{0}.{1:D2}" -f $prefix,$build
+
+                echo "VERSION=$version" >> $env:GITHUB_ENV
+                echo "version=$version" >> $env:GITHUB_OUTPUT
+
+            name: Criar Tag
+            run: |
+                git tag ${{ env.VERSION }}
+                git push origin ${{ env.VERSION }}    
