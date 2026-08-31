@@ -1,0 +1,15 @@
+name: Integracao continua - CI
+
+on:
+    push:
+        branches:
+            - develop
+            - master
+
+jobs:
+    integracao_continua:
+        runs-on: self-hosted
+
+        steps:
+            - name: BaixarCodigo
+              uses: actions/checkout@v4
