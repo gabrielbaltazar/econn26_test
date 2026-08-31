@@ -12,6 +12,7 @@ type
   private
     { Private declarations }
     procedure CadastroFornecedor;
+    procedure CadastroCliente;
   public
     function Soma(const ANum1: Integer; const ANum2: Integer): Integer;
     { Public declarations }
@@ -27,6 +28,11 @@ implementation
 { TForm1 }
 
 procedure TForm1.CadastroFornecedor;
+begin
+
+end;
+
+procedure TForm1.CadastroCliente;
 begin
 
 end;
