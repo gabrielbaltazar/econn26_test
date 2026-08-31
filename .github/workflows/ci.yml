@@ -5,6 +5,11 @@ on:
         branches:
             - develop
             - master
+    
+    pull_request:
+        branches:
+            - develop
+            - master    
 
 jobs:
     integracao_continua:
